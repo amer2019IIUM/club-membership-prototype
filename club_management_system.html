@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .navigation {
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .navigation a:hover {
+            background: #45a049;
+        }
+
+        .container {
+            margin: 70px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background: #f4f4f4;
+            font-weight: bold;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .form-footer {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .summary {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="#" onclick="showSection('registration')">Registration</a>
+        <a href="#" onclick="showSection('profileManagement')">Profile Management</a>
+        <a href="#" onclick="showSection('membershipReports')">Membership Reports</a>
+        <a href="#" onclick="showSection('financialReports')">Financial Reports</a>
+        <a href="#" onclick="showSection('eventReports')">Event Reports</a>
+        <a href="#" onclick="showSection('smsAlerts')">SMS Alerts</a>
+        <a href="#" onclick="showSection('emailNotifications')">Email Notifications</a>
+    </div>
+
+    <!-- Registration Section -->
+    <div id="registration" class="container">
+        <h1>Membership Registration</h1>
+        <form>
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Your name">
+            <label for="matricNumber">Matric Number</label>
+            <input type="text" id="matricNumber" placeholder="Your matric number">
+            <label for="levelOfStudy">Level of Study</label>
+            <select id="levelOfStudy">
+                <option value="Level 1">Level 1</option>
+                <option value="Level 2">Level 2</option>
+                <option value="Level 3">Level 3</option>
+                <option value="Level 4">Level 4</option>
+            </select>
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" placeholder="Your phone number">
+            <label for="kulliyyah">Kulliyyah</label>
+            <input type="text" id="kulliyyah" placeholder="Your kulliyyah">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Your password">
+            <button type="button" onclick="alert('Registered Successfully!')">Register</button>
+        </form>
+    </div>
+
+    <!-- Profile Management Section -->
+    <div id="profileManagement" class="container hidden">
+        <h1>Profile Management</h1>
+        <form>
+            <label for="profileName">Full Name</label>
+            <input type="text" id="profileName" value="John Doe">
+            <label for="profileMatric">Matric Number</label>
+            <input type="text" id="profileMatric" value="123456">
+            <label for="profileLevel">Level of Study</label>
+            <select id="profileLevel">
+                <option value="Level 1">Level 1</option>
+                <option value="Level 2" selected>Level 2</option>
+                <option value="Level 3">Level 3</option>
+                <option value="Level 4">Level 4</option>
+            </select>
+            <label for="profileEmail">Email</label>
+            <input type="email" id="profileEmail" value="johndoe@example.com">
+            <label for="profilePhone">Phone Number</label>
+            <input type="text" id="profilePhone" value="1234567890">
+            <label for="profileKulliyyah">Kulliyyah</label>
+            <input type="text" id="profileKulliyyah" value="KICT">
+            <button type="button" onclick="alert('Profile Updated Successfully!')">Update Profile</button>
+        </form>
+    </div>
+
+    <!-- Membership Reports Section -->
+    <div id="membershipReports" class="container hidden">
+        <h1>Membership Reports</h1>
+        <label for="reportType">Select Report Type</label>
+        <select id="reportType" onchange="generateMembershipReport()">
+            <option value="active">Active Members</option>
+            <option value="expired">Expired Memberships</option>
+        </select>
+        <table id="membershipReportTable">
+            <thead>
+                <tr>
+                    <th>Membership ID</th>
+                    <th>Name</th>
+                    <th>Matric Number</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>101</td>
+                    <td>Alice</td>
+                    <td>123456</td>
+                    <td>Active</td>
+                    <td>2023-01-01</td>
+                    <td>2023-12-31</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-footer">
+            <button onclick="downloadTableAsCSV('membershipReportTable', 'membership_report.csv')">Download Report</button>
+        </div>
+    </div>
+
+    <!-- Financial Reports Section -->
+    <div id="financialReports" class="container hidden">
+        <h1>Financial Reports</h1>
+        <label for="financeReportType">Select Report Type</label>
+        <select id="financeReportType" onchange="generateFinancialReport()">
+            <option value="revenue">Revenue</option>
+            <option value="expenses">Expenses</option>
+        </select>
+        <table id="financialReportTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2023-01-01</td>
+                    <td>Membership Fee</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>2023-02-01</td>
+                    <td>Event Expense</td>
+                    <td>-$50</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-footer">
+            <button onclick="downloadTableAsCSV('financialReportTable', 'financial_report.csv')">Download Report</button>
+        </div>
+    </div>
+
+    <!-- Event Reports Section -->
+    <div id="eventReports" class="container hidden">
+        <h1>Event Reports</h1>
+        <label for="eventReportType">Select Event Report</label>
+        <select id="eventReportType" onchange="generateEventReport()">
+            <option value="attendance">Attendance</option>
+            <option value="revenue">Revenue</option>
+        </select>
+        <table id="eventReportTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Event</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2023-01-01</td>
+                    <td>Photography Workshop</td>
+                    <td>Attendance: 50</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-footer">
+            <button onclick="downloadTableAsCSV('eventReportTable', 'event_report.csv')">Download Report</button>
+        </div>
+    </div>
+
+    <!-- SMS Alerts Section -->
+    <div id="smsAlerts" class="container hidden">
+        <h1>SMS Alerts</h1>
+        <form>
+            <label for="smsPhone">Phone Number</label>
+            <input type="text" id="smsPhone" placeholder="Recipient phone number">
+            <label for="smsMessage">Message</label>
+            <textarea id="smsMessage" rows="4" placeholder="Enter your message"></textarea>
+            <button type="button" onclick="alert('SMS Sent!')">Send SMS</button>
+        </form>
+    </div>
+
+    <!-- Email Notifications Section -->
+    <div id="emailNotifications" class="container hidden">
+        <h1>Email Notifications</h1>
+        <form>
+            <label for="emailTo">To</label>
+            <input type="email" id="emailTo" placeholder="Recipient email">
+            <label for="emailSubject">Subject</label>
+            <input type="text" id="emailSubject" placeholder="Email subject">
+            <label for="emailBody">Message</label>
+            <textarea id="emailBody" rows="4" placeholder="Email content"></textarea>
+            <button type="button" onclick="alert('Email Sent!')">Send Email</button>
+        </form>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container');
+            sections.forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        function downloadTableAsCSV(tableId, filename) {
+            const table = document.getElementById(tableId);
+            const rows = Array.from(table.querySelectorAll('tr'));
+            const csvContent = rows.map(row => {
+                const cells = Array.from(row.querySelectorAll('th, td'));
+                return cells.map(cell => `"${cell.textContent}"`).join(',');
+            }).join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
